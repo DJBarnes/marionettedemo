@@ -1,0 +1,1 @@
+window.DemoApp = new Backbone.Marionette.Application();
