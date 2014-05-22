@@ -14,6 +14,7 @@ DemoApp.DemoAppController = {
     DemoApp.footer = new DemoApp.InventorySection.FooterView();
     DemoApp.headerArea.show(DemoApp.header);
     DemoApp.footerArea.show(DemoApp.footer);
+    DemoApp.InventorySection.InventoryController.getItems(DemoApp.InventorySection.InventoryController.showItemTable);
   },
 
   itemDetails : function () {
@@ -31,7 +32,7 @@ DemoApp.Router = new Marionette.AppRouter({
 
 DemoApp.on('initialize:after', function() {
   tpl.loadTemplates(['pageHeader', 'pageFooter', 'itemListItem', 'itemDetails', 'itemTable'], function() {
-    var result = Backbone.history.start({root : "/marionettedemo/"});
+    var result = Backbone.history.start();//{root : "/marionettedemo/"});
   });
 });
 

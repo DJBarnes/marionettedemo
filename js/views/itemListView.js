@@ -1,39 +1,18 @@
 DemoApp.module('InventorySection', function (InventorySection, App, Backbone, Marionette, $, _) {
-  InventorySection.ItemListCompositeView = Backbone.Marionette.CompositeView.extend({
 
-    itemView: DemoApp.InventorySection.ItemItemView,
-
-    initalize : function(options) {
-      this.template = _.template(tpl.get('itemTable'));
-    },
-
-    id: 'itemTable',
-    className: 'itemTable',
-
-    itemViewContainer : "tbody",
-
-    events: {
-      'click #save' : 'saveData'
-    }
-
-  });
-});
-
-DemoApp.module('InventorySection', function (InventorySection, App, Backbone, Marionette, $, _) {
   InventorySection.ItemListItemView = Backbone.Marionette.ItemView.extend({
 
     tagName: 'tr',
 
-    initalize : function(options) {
+    initialize : function() {
       this.template = _.template(tpl.get('itemListItem'));
       this.model.bind('change', this.render, this);
     },
 
-    id: 'itemTable',
-    className: 'itemDetails',
+    id: 'items',
 
     attributes : function(){
-      var classValue = InventoryTab.currentInventory.indexOf(this.model);
+      var classValue = InventorySection.currentInventory.indexOf(this.model);
       var classProperty = '';
       if ((Number(classValue)%2) === 0) {
         classProperty = 'even';
@@ -53,6 +32,22 @@ DemoApp.module('InventorySection', function (InventorySection, App, Backbone, Ma
     showItemDetails : function() {
       App.navigate('items/' + this.model.id, true);
     }
+
+  });
+
+  InventorySection.ItemListCompositeView = Backbone.Marionette.CompositeView.extend({
+
+    itemView: InventorySection.ItemListItemView,
+
+    initialize : function() {
+      this.template = _.template(tpl.get('itemTable'));
+      console.log(this.template);
+    },
+
+    id: 'itemTable',
+    className: 'itemTable',
+
+    itemViewContainer : "tbody"
 
   });
 });

@@ -46,7 +46,7 @@ function updateItem($id) {
 }
 
 function getConnection() {
-  $dbhost = "127.0.0.1";
+  $dbhost = "barnesbrothers.homeserver.com";
   $dbuser = "kvcc";
   $dbpass = "password";
   $dbname = "backbonedemo";
